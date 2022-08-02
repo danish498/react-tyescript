@@ -7,7 +7,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredText = todoTextInputRef.current!.value;
-    console.log(enteredText);
+    // console.log(enteredText);
 
     if (enteredText.trim().length === 0) {
       // throw an error
@@ -15,13 +15,15 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
     }
 
     props.onAddTodo(enteredText);
+
+    todoTextInputRef.current!.value = '';
   };
 
   return (
     <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor='text'>Todo Text</label>
       <input type='text' id='text' ref={todoTextInputRef} />
-      <button>Add Todo</button>
+      <button type='submit'>Add Todo</button>
     </form>
   );
 };
